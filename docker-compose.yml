@@ -1,0 +1,18 @@
+services:
+  # Create frontend container
+  frontend: # Name of our service
+    build: ./frontend # path to dockerfile
+    ports: # Port binding to host from docker container
+      - "8000:8000" # Bind port 8000 of host to 8000 of container
+    container_name: weatherapp_frontend
+    restart: always # What to do if container crashes
+    depends_on:
+      - backend
+  # Create backend container
+  backend:
+    # Create backend container  
+    build: ./backend
+    ports:
+      - "9000:9000"
+    container_name: weatherapp_backend
+    restart: always
